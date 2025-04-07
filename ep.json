@@ -1,0 +1,10 @@
+{
+  "parts": [
+    {
+      "name": "ep_default_colors_off",
+      "client_hooks": {
+        "postAceInit": "ep_default_colors_off/static/js/index"
+      }
+    }
+  ]
+} 

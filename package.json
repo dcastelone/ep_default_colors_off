@@ -1,0 +1,14 @@
+{
+  "name": "ep_default_colors_off",
+  "version": "0.0.2",
+  "description": "Defaults Etherpad authorship colors to off.",
+  "author": "Your Name",
+  "license": "Apache-2.0",
+  "keywords": ["etherpad", "colors", "authorship", "default"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+} 
