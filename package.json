@@ -1,10 +1,18 @@
 {
   "name": "ep_default_colors_off",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Defaults Etherpad authorship colors to off.",
-  "author": "Your Name",
+  "author": "dcastelone",
   "license": "Apache-2.0",
-  "keywords": ["etherpad", "colors", "authorship", "default"],
+  "keywords": ["etherpad", "colors", "authorship", "ep","showAuthorColors"],
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcastelone/ep_default_colors_off"
+  },
+  "bugs": {
+    "url": "https://github.com/dcastelone/ep_default_colors_off/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
