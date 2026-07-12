@@ -1,5 +1,47 @@
 const padcookie = require('ep_etherpad-lite/static/js/pad_cookie').padcookie;
 
+const timesliderColorsOn = () =>
+  !!(clientVars.ep_default_colors_off && clientVars.ep_default_colors_off.timesliderColorsOn);
+
+const enableTimesliderColors = (iframe) => {
+  if (iframe.dataset.defaultColorsOffBound === 'true') return;
+  iframe.dataset.defaultColorsOffBound = 'true';
+
+  const bind = () => {
+    let doc;
+    try {
+      doc = iframe.contentDocument;
+    } catch (_err) {
+      return;
+    }
+    if (!doc) return;
+
+    const inner = doc.getElementById('innerdocbody');
+    const side = doc.getElementById('sidedivinner');
+    if (!inner || !side) {
+      if (iframe.isConnected) iframe.contentWindow.requestAnimationFrame(bind);
+      return;
+    }
+
+    const apply = () => {
+      if (!inner.classList.contains('authorColors')) inner.classList.add('authorColors');
+      if (!side.classList.contains('authorColors')) side.classList.add('authorColors');
+    };
+    apply();
+    new MutationObserver(apply).observe(inner, {attributes: true, attributeFilter: ['class']});
+    new MutationObserver(apply).observe(side, {attributes: true, attributeFilter: ['class']});
+  };
+
+  iframe.addEventListener('load', bind);
+  bind();
+};
+
+const findTimeslider = () => {
+  if (!timesliderColorsOn()) return;
+  const iframe = document.querySelector('#history-frame-mount iframe');
+  if (iframe) enableTimesliderColors(iframe);
+};
+
 exports.postAceInit = (hookName, args, cb) => {
 
   let updatedPrefs = false;
@@ -57,5 +99,11 @@ exports.postAceInit = (hookName, args, cb) => {
       }
   }
 
+  if (timesliderColorsOn()) {
+    findTimeslider();
+    const mount = document.getElementById('history-frame-mount');
+    if (mount) new MutationObserver(findTimeslider).observe(mount, {childList: true});
+  }
+
   return cb();
-}; 
+};
