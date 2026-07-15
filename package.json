@@ -14,9 +14,9 @@
     "url": "https://github.com/dcastelone/ep_default_colors_off/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "engines": {
     "node": ">=16.0.0"
   }
-} 
+}
