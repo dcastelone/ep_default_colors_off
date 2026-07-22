@@ -1,27 +1,36 @@
-# README
+# ep_default_colors_off
 
-## What is this?
-This plugin sets the setAuthorshipColors and setAuthorColor values in the prefs cookie to default false tolerating client preferences afterward. I needed this for my own project requirements (so you can consider it experimental). Use at your own risk!
+Sets Etherpad's initial authorship-color preference to off while preserving the user's ability to change that preference afterward.
+
+## Installation
+
+From the Etherpad directory:
+
+```sh
+pnpm run plugins i ep_default_colors_off
+```
+
+Restart Etherpad after installation. No configuration is required for the default behavior.
 
 ## Optional timeslider colors
 
-Live editing and history can use different defaults. To keep live authorship
-colors off while forcing them on in Etherpad's in-place timeslider, add:
+Live editing and revision history can use different defaults. To keep live authorship colors off while forcing them on in Etherpad's embedded timeslider, add this block to `settings.json`:
 
 ```json
-"ep_default_colors_off": {
-  "timesliderColorsOn": true
+{
+  "ep_default_colors_off": {
+    "timesliderColorsOn": true
+  }
 }
 ```
 
-The option defaults to `false`. It changes only the embedded historical
-document and does not overwrite the user's live-view preference cookie.
-
-## License
-Apache 2
+`timesliderColorsOn` defaults to `false`. Enabling it affects only the historical document embedded by the timeslider; it does not overwrite the user's live-editor preference.
 
 ## Development
-Development courtesy of me but mainly gemini-2.5-pro-exp-03-25.
 
-## Author
-Daniel Castelone
+```sh
+pnpm install --frozen-lockfile
+pnpm test
+```
+
+Licensed under the Apache License 2.0.
